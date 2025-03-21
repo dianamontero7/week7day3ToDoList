@@ -1,6 +1,7 @@
 
 // Array to store tasks
-const tasks = [{title: "Clean the garage", priority: "high" }];
+const tasks = [{title: "Clean the garage", priority: "high" }
+];
 
 
 function renderTaskCards(tasksToRender){
@@ -9,6 +10,7 @@ function renderTaskCards(tasksToRender){
     
     for(let i = 0; i < tasks.length; i++){
         let taskToRender = tasksToRender[i]
+
         
         let taskCardHTML = document.createElement("div")
         taskCardHTML.className = "task"
@@ -19,8 +21,23 @@ function renderTaskCards(tasksToRender){
         let taskCardButtonHTML = document.createElement("button")
         taskCardButtonHTML.innerText = "Done✅"
 
-        
         //PARTS 2 & 3
+        
+        taskCardButtonHTML.addEventListener("click", function(){
+            taskCardHTML.remove();
+        })
+
+        if (taskToRender.priority === "high") {
+            taskCardHTML.style.borderColor = "red";
+        } else if (taskToRender.priority === "medium") {
+            taskCardHTML.style.borderColor = "yellow";
+        } else {
+            taskCardHTML.style.borderColor = "blue";
+        }
+
+   
+
+
         
 
 
@@ -43,6 +60,11 @@ addTaskButtonHTML.addEventListener("click", function(){
 
     //access the value property on taskTitleInputHTML and save the result to a new a variable called newTaskTitle 
 
+    let taskTitleInputHTML = document.getElementById("taskTitleInput");
+    let newTaskTitle = taskTitleInputHTML.value; 
+    
+
+
 
     //PART 1b
 
@@ -51,16 +73,18 @@ addTaskButtonHTML.addEventListener("click", function(){
     //access the value property on taskPriorityHTML and save the result to a new a variable called newTaskPriority
 
 
+    let taskPriorityHTML = document.getElementById("taskPriority");
+    let newTaskPriority = taskPriorityHTML.value; 
+
 
     
     
     // What happens if you uncomment these 3 lines👇
 
-    // let newTask = {title: "Clean room", priority: "low" }
-    // tasks.push(newTask)
-    // renderTaskCards(tasks)
+    let newTask = { title: newTaskTitle, priority: newTaskPriority };
+    tasks.push(newTask);
+    renderTaskCards(tasks)
 })
-
 
 
 
